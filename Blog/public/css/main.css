@@ -71,7 +71,7 @@ nav .logins a:hover, nav form button:hover
 
 
 
-.card .author img {
+ .author img {
 	width: 80px;
 }
 
@@ -278,4 +278,32 @@ li.page-item.active .page-link
 li.page-item .page-link
 {
 	color: var(--main-color);
+}
+
+.comment
+{
+	background-color: var(--main-color);
+	color: white;
+	border-radius: 25px;
+}
+
+
+.login
+{
+	background-color: var(--main-color);
+	color: white;
+	border: var(--main-color) 1px solid;
+}
+
+.login:hover
+{
+	background-color: white;
+	color: var(--main-color);
+	
+}
+
+.error
+{
+	font-size: smaller;
+	color: red;
 }

@@ -28,7 +28,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'body' => $this->faker->paragraph() . $this->faker->paragraph() .$this->faker->paragraph() . $this->faker->paragraph(),
+            'body' => "<p>" . implode("</p><p>",$this->faker->paragraphs(4))."</p>",
             'createdAt' => now(),
             'author_id' => $this->faker->numberBetween(1,5),
             'category_id' => $this->faker->numberBetween(1,10),

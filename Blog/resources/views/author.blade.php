@@ -1,6 +1,3 @@
-@extends("master")
-
-@section("content")
 <main class="container py-5">
     <div class="d-flex w-50 m-auto p-5">
         <img class=" rounded-circle m-4 " src="../images/testimonial-4.jpg" alt="Title">
@@ -32,4 +29,3 @@
     document.getElementById("home").classList.remove("active");
     document.getElementById("cats").classList.remove("active");
 </script>
-@endsection
