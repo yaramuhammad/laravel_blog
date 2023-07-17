@@ -110,16 +110,21 @@
         </div>
     </section>
 
-
+    
+    
     <main class="container py-5">
         <div class="row g-4">
-            <h1 class="text-center">Posts</h1>
+            <p class="text-center col-11">Posts</p>
+            @auth<a href="/create" class="login btn col-1">Add a post</a>@endauth
             @if($posts->count())
             @foreach ($posts as $post)
             <div class="col-4">
                 <div class="card">
                     <a href="/post/{{$post->title}}" class="text-decoration-none">
-                        <img class="card-img-top" src="./images/overlay-bg.jpg" alt="Title">
+                        @php
+                        $img = asset('storage/').'/'.$post->thumbnail
+                        @endphp
+                        <img class="card-img-top" src="{{$post->img ? $img  :'./images/overlay-bg.jpg'}}" alt="Title" height="250px">
                     </a>
                     <div class="card-body">
                         <a href="/post/{{$post->title}}" class="text-decoration-none">

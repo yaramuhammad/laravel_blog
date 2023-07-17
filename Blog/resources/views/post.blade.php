@@ -19,7 +19,10 @@
     <main class="container p-5">
         <div class="row g-4">
             <div class="col-6">
-                <img src="../images/overlay-bg.jpg" alt="Title" class="w-100">
+                @php
+                $img = asset('storage/').'/'.$post->thumbnail
+                @endphp
+                <img src="{{$post->img ? $img  :'../images/overlay-bg.jpg'}}" alt="Title" class="w-100">
             </div>
             <div class="col-6">
                 <h1>{{$post->title}}</h1>
@@ -41,13 +44,13 @@
                         <div class="d-flex justify-content-end">
                             <input type="submit" class="btn rounded mx-2 login">
                         </div>
-                        
+
                     </form>
                     <div class="error">
                         @error('body')
                         {{$message}}
                         @enderror
-                        </div>
+                    </div>
                     @else
                     <a href="/login" class="btn rounded mx-2 login">Log in to write a comment.</a>
                     @endauth

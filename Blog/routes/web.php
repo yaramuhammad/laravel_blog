@@ -65,3 +65,8 @@ Route::post('/register', [AuthorController::class, 'store'])->middleware('guest'
 Route::post('/logout', [SessionsController::class, 'destroy']);
 
 Route::post('/post/{post:title}/comments', [CommentController::class, 'store']);
+
+Route::get('/create', [PostController::class,'create']);
+Route::post('/create', [PostController::class,'store']);
+
+

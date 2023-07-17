@@ -20,7 +20,33 @@ class PostController extends Controller
         return view('welcome', [
             "posts" => $posts,
             "categories" => $cats,
-            "authors"=>$authors
+            "authors" => $authors
         ]);
+    }
+
+    public function create()
+    {
+        $cats = Category::all();
+        return view('postcreate', ["categories" => $cats]);
+    }
+    public function store()
+    {
+        request()->file('thumbnail')->store('public/thumbnails');
+
+        $attributes = request()->validate(
+            [
+                'title' => ['required', 'unique:posts'],
+                'body' => ['required'],
+                'thumbnail' => ['required', 'image'],
+                'category_id' => ['required'],
+                'excerpt' => ['required'],
+                'img' => ['required']
+            ]
+        );
+        $attributes['author_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        Post::create($attributes);
+
+        return redirect('/');
     }
 }
