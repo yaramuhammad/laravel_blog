@@ -13,7 +13,7 @@
 
 <body>
     <div class="container p-5">
-        <form action="/register" method="post" class="py-5 w-50 m-auto">
+        <form action="/register" method="post" class="py-5 w-50 m-auto" enctype="multipart/form-data">
             @csrf
             <h1 class="my-5">Register</h1>
 
@@ -45,6 +45,17 @@
                     {{$message}}
                     @enderror
                 </div>
+
+                <label for="" class="mt-4 mb-2">Photo:</label>
+                <input class="form-control" type="file" name="photo">
+                <div class="fs-6 text-danger">
+                    @error('photo')
+                    {{$message}}
+                    @enderror
+                </div>
+
+                <input type="text" hidden name="img" value="1">
+
                 <input type="submit" class="btn rounded login mt-4 mb-2">
             </div>
 

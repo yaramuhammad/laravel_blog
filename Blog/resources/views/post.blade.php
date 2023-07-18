@@ -25,7 +25,11 @@
                 <p>{!!$post->body!!}</p>
             </div>
             <div class="d-flex text-decoration-none col-6 author align-items-start">
-                <img src="../images/testimonial-4.jpg" alt="author" class="rounded-circle">
+                @php
+                $img2 = asset('storage/').'/'.$post->author->photo
+                @endphp
+
+                <img src="{{$post->author->img ? $img2  :'../images/testimonial-4.jpg'}}" alt="author" class="rounded-circle">
                 <div>
                     <h4 class="mt-3 ms-3">{{$post->author->name}}</h4>
                     <h6 class="ms-3">{{$post->category->name}}</h6>

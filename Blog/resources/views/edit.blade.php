@@ -58,7 +58,7 @@
                 @endphp
                 <label for="" class="mt-4 mb-2">Thumbnail:</label>
                 <div class="d-flex justify-content-center">
-                    <input type="file" name="thumbnail" value="{{old('thumbnail')}}" class="form-control">
+                    <input type="file" name="thumbnail" class="form-control">
                     <img src="{{$post->img ? $img  :'../images/overlay-bg.jpg'}}" alt="Title" width="80">
                 </div>
                 <div class="fs-6 text-danger">

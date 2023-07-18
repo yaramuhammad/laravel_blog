@@ -57,12 +57,9 @@
                 <a href="/register" class="btn rounded mx-2">Register</a>
                 @endguest
                 @auth
-                <form action="/logout" method="POST">
-                    @csrf
-                    <button type="submit" class="p-2 rounded">Log Out</button>
-                </form>
 
-                <a href="/edit/posts">Edit Posts</a>
+                <a href="/edit/posts" class="btn rounded mx-2">Dashboard</a>
+                <a href="/logout" class="btn rounded mx-2">Log Out</a>
                 @endauth
             </div>
         </div>
@@ -76,7 +73,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="post-filter">
         <div class="container m-auto p-5">
@@ -108,8 +104,6 @@
         </div>
     </section>
 
-
-
     <main class="container py-5">
         <div class="row g-4">
             <h1 class="text-center">Posts</h1>
@@ -135,7 +129,10 @@
                         <a href="/authors/{{$post->author->name}}" class="text-decoration-none mt-4 d-block">
                             <div class="author">
                                 <div class="d-flex text-decoration-none">
-                                    <img src="./images/testimonial-4.jpg" alt="author" class="rounded-circle">
+                                    @php
+                                    $img2 = asset('storage/').'/'.$post->author->photo
+                                    @endphp
+                                    <img src="{{$post->author->img ? $img2  :'./images/testimonial-4.jpg'}}" alt="author" class="rounded-circle">
                                     <div>
                                         <h4 class="mt-3 ms-3">{{$post->author->name}}</h4>
                                         <h6 class="ms-3">{{$post->category->name}}</h6>

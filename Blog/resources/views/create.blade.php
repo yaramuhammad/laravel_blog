@@ -51,7 +51,7 @@
          
 
                 <label for="" class="mt-4 mb-2">Thumbnail:</label>
-                <input class="form-control"type="file" name="thumbnail" value="{{old('thumbnail')}}">
+                <input class="form-control"type="file" name="thumbnail">
                 <div class="fs-6 text-danger">
                     @error('thumbnail')
                     {{$message}}

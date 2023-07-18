@@ -65,7 +65,7 @@ class AuthorPostsController extends Controller
         $attributes['author_id'] = auth()->id();
         $post->update($attributes);
 
-        return redirect('/')->with('success', 'Post Updated');
+        return redirect('/edit/posts')->with('success', 'Post Updated');
     }
 
     public function index()
@@ -73,12 +73,12 @@ class AuthorPostsController extends Controller
         $user = Author::find(Auth::id());
         $posts = $user->post()->get();
 
-        return view('posts', ['posts' => $posts]);
+        return view('dashboard', ['posts' => $posts]);
     }
 
     public function delete(Post $post)
     {
         $post->delete();
-        return redirect('/')->with('success', 'Post Deleted');
+        return redirect('/edit/posts')->with('success', 'Post Deleted');
     }
 }
