@@ -21,20 +21,17 @@ class SessionsController extends Controller
     {
         $attributes = request()->validate(
             [
-                'email' => ['required', 'exists:authors'],
+                'email' => ['required', 'exists:authors', 'email'],
                 'password' => ['required']
             ]
         );
 
-        if(auth()->attempt($attributes))
-        {
+        if (auth()->attempt($attributes)) {
             session()->regenerate();
-            return redirect('/')->with('success','Welcome '.ucfirst(auth()->user()->name));
-        }
-        else
-        {
+            return redirect('/')->with('success', 'Welcome ' . ucfirst(auth()->user()->name));
+        } else {
             return back()->withErrors([
-                'password'=>'The password you entered is not correct.'
+                'password' => 'The password you entered is not correct.'
             ])->withInput();
         }
     }
