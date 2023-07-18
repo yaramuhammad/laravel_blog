@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
 
-
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-
-
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>
-    
+
     @if(session()->has('success'))
     <div class="pop-up-layer" id="pop-up-layer">
         <div class="pop-up">
@@ -65,6 +61,8 @@
                     @csrf
                     <button type="submit" class="p-2 rounded">Log Out</button>
                 </form>
+
+                <a href="/edit/posts">Edit Posts</a>
                 @endauth
             </div>
         </div>
@@ -83,7 +81,7 @@
     <section class="post-filter">
         <div class="container m-auto p-5">
             <div action="/" class="d-flex justify-content-between align-items-center position-relative">
-                <button class="form-select w-25 text-start" onclick="showList('list')">{{request('category')!==null ? request('category') : 'Categories'}}</button>
+                <button class="form-select w-25 text-start" onclick="showList()">{{request('category')!==null ? request('category') : 'Categories'}}</button>
 
                 <div id="list">
                     <ul class="list-unstyled">
@@ -110,12 +108,12 @@
         </div>
     </section>
 
-    
-    
+
+
     <main class="container py-5">
         <div class="row g-4">
-            <p class="text-center col-11">Posts</p>
-            @auth<a href="/create" class="login btn col-1">Add a post</a>@endauth
+            <h1 class="text-center">Posts</h1>
+            @auth<a href="/create" class="login btn offset-11 col-1">Add a post</a>@endauth
             @if($posts->count())
             @foreach ($posts as $post)
             <div class="col-4">
@@ -214,11 +212,10 @@
 
 
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
     <script>
-        function showList(id) {
+        function showList() {
 
-            openDropdown = document.getElementById(id);
+            openDropdown = document.getElementById("list");
 
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');

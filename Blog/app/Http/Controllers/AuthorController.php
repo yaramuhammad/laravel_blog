@@ -13,21 +13,27 @@ class AuthorController extends Controller
         return view('register');
     }
 
-    public function store() 
+    public function show(Author $author)
+    {
+        $posts = $author->post;
+        return view('author', ["author" => $author, "posts" => $posts]);
+    }
+
+    public function store()
     {
         $attributes = request()->validate(
             [
-                'name' => ['required','unique:authors'],
-                'email' => ['required' , 'email'],
-                'password'=> ['required', 'min:8', 'max:16']
+                'name' => ['required', 'unique:authors'],
+                'email' => ['required', 'email'],
+                'password' => ['required', 'min:8', 'max:16']
             ]
-            );
+        );
 
         $author = Author::create($attributes);
         auth()->login($author);
 
-        
-        session()->flash('success','You have registered successfully');
+
+        session()->flash('success', 'You have registered successfully');
         return redirect('/');
     }
 }

@@ -4,11 +4,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SessionsController;
-use App\Models\Category;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthorPostsController;
 use Illuminate\Support\Facades\Route;
-use \App\Models\Post;
-use \App\Models\Author;
-use App\Models\Comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,50 +21,31 @@ use App\Models\Comment;
 
 
 
-Route::get('/', function () {
+Route::get('/',[PostController::class,'index']);
+Route::get('post/{post:title}',[PostController::class,'show']);
 
-    return PostController::index();
-});
+Route::get('categories/{category:name}',[CategoryController::class,'show']);
 
-Route::get('post/{post:title}', function (Post $post) {
-    $comments = $post->comment;
-    return view(
-        'post',
-        [
-            "post" => $post,
-            "comments" => $comments
-        ]
-    );
-});
-
-
-Route::get('/categories/{cat:name}', function (Category $cat) {
-
-    $posts = $cat->post;
-    $cats = Category::all();
-    return view('category', ["cat" => $cat, "posts" => $posts,  "categories" => $cats]);
-});
-
-
-Route::get('/authors', function () {
-    $authors = Author::all();
-    return view('authors', ["authors" => $authors]);
-});
-
-Route::get('/authors/{author:name}', function (Author $author) {
-
-    $posts = $author->post;
-    return view('author', ["author" => $author, "posts" => $posts]);
-});
+Route::get('/authors/{author:name}',[AuthorController::class,'show']);
 
 Route::get('/register', [AuthorController::class, 'create'])->middleware('guest');
 Route::post('/register', [AuthorController::class, 'store'])->middleware('guest');
 
-Route::post('/logout', [SessionsController::class, 'destroy']);
+Route::get('/login', [SessionsController::class, 'create'])->middleware('guest');
+Route::post('/login', [SessionsController::class, 'store']);
 
-Route::post('/post/{post:title}/comments', [CommentController::class, 'store']);
+Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-Route::get('/create', [PostController::class,'create']);
-Route::post('/create', [PostController::class,'store']);
+Route::post('/post/{post:title}/comments', [CommentController::class, 'store'])->middleware('auth');
+
+Route::get('/create', [AuthorPostsController::class,'create']) ->middleware('auth');
+Route::post('/create', [AuthorPostsController::class,'store']) ->middleware('auth');
+
+Route::get('/edit/posts/{post:title}', [AuthorPostsController::class,'edit']) ->middleware('auth');
+Route::patch('/edit/posts/{post:title}', [AuthorPostsController::class,'update']) ->middleware('auth');
+
+Route::get('/edit/posts/', [AuthorPostsController::class,'index'])->middleware('auth');
+
+Route::get('/delete/posts/{post:title}', [AuthorPostsController::class,'delete']) ->middleware('auth');
 
 
