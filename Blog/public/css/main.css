@@ -26,16 +26,16 @@ nav .logins a, nav form button
 	border: white 1px solid;
 }
 
-nav .logins a:hover, nav form button:hover
+nav .logins a:hover, nav form button:hover,.hovered-btn
 {
-	background-color: var(--main-color);
-	color: white;
+	background-color: var(--main-color) !important;
+	color: white !important;
 }
 
 .home
 {
 	height: 50vh;
-	background-image: url(../images/post-1.jpg);
+	background-image: url(../images/portfolio-details-3.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -306,4 +306,14 @@ li.page-item .page-link
 {
 	font-size: smaller;
 	color: red;
+}
+
+.dash
+{
+	min-height: 70vh;
+}
+.dropdown-hover, .dropdown-hover:hover
+{
+	background-color: blue;
+	color: white;
 }

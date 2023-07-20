@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     <div class="container p-5">
         <form action="/register" method="post" class="py-5 w-50 m-auto" enctype="multipart/form-data">
             @csrf
@@ -62,4 +63,5 @@
 
         </form>
     </div>
+    @include('footer')
 </body>

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     @if(session()->has('success'))
     <div class="pop-up-layer" id="pop-up-layer">
         <div class="pop-up">
@@ -21,7 +22,8 @@
     </div>
     @endif
     @if($posts->count())
-    <main class="container py-5">
+    <h1 class="text-center mt-5">Dashboard</h1>
+    <main class="container py-5 dash">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -52,4 +54,5 @@
         </div>
     </div>
     @endif
+    @include('footer')
 </body>

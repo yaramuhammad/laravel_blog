@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     <div class="container p-3">
         @if(Auth::id()!=$post->author_id)
         {{abort(403, 'Access denied');}}
@@ -90,4 +91,5 @@
 
         </form>
     </div>
+    @include('footer')
 </body>

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     <div class="container p-5">
         <form action="/create" method="post" enctype="multipart/form-data" class="py-5 w-50 m-auto">
 
@@ -76,4 +77,5 @@
 
         </form>
     </div>
+    @include('footer')
 </body>

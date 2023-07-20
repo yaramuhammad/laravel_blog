@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     <div class="container p-5">
         <form action="/login" method="post" class="py-5 w-50 m-auto">
             @csrf
@@ -42,4 +43,5 @@
 
     </form>
     </div>
+    @include('footer')
 </body>

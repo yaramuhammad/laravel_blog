@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     <main class="container p-5">
         <div class="row g-4">
             <div class="col-6">
@@ -56,9 +57,15 @@
                     @endauth
                 </div>
                 @foreach($comments as $comment)
+                @php
+                $img3 = asset('storage/').'/'.$comment->author->photo;
+                $random = 'https://i.pravatar.cc/60?img=' . $comment->author_id;
+                @endphp
                 <div class="p-4 m-4 comment">
                     <div class="d-flex">
-                        <img src="https://i.pravatar.cc/60?img={{$comment->author_id}}" alt="" class="rounded-circle me-3">
+                        <img 
+                        src="{{$comment->author->img ? $img3  : $random}}" 
+                            alt="" class="rounded-circle me-3" width="50px">
                         <h5 class="mt-3">{{ucfirst($comment->author->name)}}</h5>
                     </div>
                     <p class="ms-5 ps-4">{{$comment->body}}</p>
@@ -69,4 +76,5 @@
 
 
     </main>
+    @include('footer')
 </body>

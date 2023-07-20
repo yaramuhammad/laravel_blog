@@ -22,48 +22,7 @@
     </div>
     @endif
 
-    <nav class="navbar navbar-expand-sm navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="/">My Blog</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav m-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            @foreach($categories as $category)
-                            <a href="/categories/{{$category->name}}" class="dropdown-item">{{$category->name}}</a>
-                            @endforeach
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Authors</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            @foreach($authors as $author)
-                            <a href="/authors/{{$author->name}}" class="dropdown-item">{{$author->name}}</a>
-                            @endforeach
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="logins">
-                @guest
-                <a href="/login" class="btn rounded mx-2">Log In</a>
-                <a href="/register" class="btn rounded mx-2">Register</a>
-                @endguest
-                @auth
-
-                <a href="/edit/posts" class="btn rounded mx-2">Dashboard</a>
-                <a href="/logout" class="btn rounded mx-2">Log Out</a>
-                @endauth
-            </div>
-        </div>
-    </nav>
+    @include('nav')
 
     <section class="text-center home">
         <div class="home-layer  p-5">
@@ -154,61 +113,8 @@
         {{$posts->links()}}
     </div>
 
+    @include('footer')
 
-    <footer class="footer-distributed p-5 fw-bold ">
-
-        <div class="container">
-            <div class="row g-2">
-                <div class="footer-left col-4">
-
-                    <h3>Blog</h3>
-
-                    <p class="footer-company-name">Blog Name © 2015</p>
-                </div>
-
-                <div class="footer-center col-4">
-
-                    <div>
-                        <i class="fa fa-map-marker"></i>
-                        <p><span>444 S. Cedros Ave</span> Solana Beach, California</p>
-                    </div>
-
-                    <div>
-                        <i class="fa fa-phone"></i>
-                        <p>+1.555.555.5555</p>
-                    </div>
-
-                    <div>
-                        <i class="fa fa-envelope"></i>
-                        <p><a href="mailto:support@company.com">support@company.com</a></p>
-                    </div>
-
-                </div>
-
-                <div class="footer-right col-4">
-
-                    <p class="footer-company-about">
-                        <span>About the company</span>
-                        Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-                    </p>
-
-                    <div class="footer-icons">
-
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#"><i class="fa-brands fa-github"></i></a>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </footer>
-
-
-    <script src="../js/bootstrap.bundle.min.js"></script>
     <script>
         function showList() {
 

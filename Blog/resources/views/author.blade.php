@@ -12,6 +12,7 @@
 </head>
 
 <body>
+@include('nav')
     <main class="container py-5">
         <div class="d-flex w-50 m-auto p-5">
             @php
@@ -41,4 +42,5 @@
             @endforeach
         </div>
     </main>
+    @include('footer')
 </body>
