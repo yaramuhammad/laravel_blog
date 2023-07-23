@@ -7,38 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-
-    protected $with = ['category', 'author','comment'];
+    protected $with = ['category', 'author', 'comment'];
 
     use HasFactory;
+
     public function author()
     {
         return $this->belongsTo(Author::class);
     }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    public function comment() {
+
+    public function comment()
+    {
 
         return $this->hasMany(Comment::class);
     }
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? false, fn ($query, $search) =>
-            $query->where(fn($query) =>
-                $query->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%')
+        $query->when($filters['search'] ?? false, fn ($query, $search) => $query->where(fn ($query) => $query->where('title', 'like', '%'.$search.'%')
+            ->orWhere('body', 'like', '%'.$search.'%')
         ));
 
         $query->when(
-                $filters['category'] ?? false,
-                fn ($query, $category) =>
+            $filters['category'] ?? false,
+            fn ($query, $category) => $query->whereHas('category', fn ($query) => $query->where('name', $category))
 
-                $query->whereHas('category' , fn($query)=>
-                $query ->where('name', $category))
-
-            );
+        );
     }
 }

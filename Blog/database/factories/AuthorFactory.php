@@ -20,7 +20,7 @@ class AuthorFactory extends Factory
             'name' => $this->faker->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
         ];
     }
 }

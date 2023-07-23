@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class SessionsController extends Controller
 {
     public function destroy()
     {
         auth()->logout();
+
         return redirect('/');
     }
 
@@ -22,16 +21,17 @@ class SessionsController extends Controller
         $attributes = request()->validate(
             [
                 'email' => ['required', 'exists:authors', 'email'],
-                'password' => ['required']
+                'password' => ['required'],
             ]
         );
 
         if (auth()->attempt($attributes)) {
             session()->regenerate();
-            return redirect('/')->with('success', 'Welcome ' . ucfirst(auth()->user()->name));
+
+            return redirect('/')->with('success', 'Welcome '.ucfirst(auth()->user()->name));
         } else {
             return back()->withErrors([
-                'password' => 'The password you entered is not correct.'
+                'password' => 'The password you entered is not correct.',
             ])->withInput();
         }
     }

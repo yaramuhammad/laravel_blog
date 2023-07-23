@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
-use Illuminate\Http\Request;
-
 
 class AuthorController extends Controller
 {
@@ -16,7 +14,8 @@ class AuthorController extends Controller
     public function show(Author $author)
     {
         $posts = $author->post;
-        return view('author', ["author" => $author, "posts" => $posts]);
+
+        return view('author', ['author' => $author, 'posts' => $posts]);
     }
 
     public function store()
@@ -27,7 +26,7 @@ class AuthorController extends Controller
                 'name' => ['required', 'unique:authors'],
                 'email' => ['required', 'email'],
                 'password' => ['required', 'min:8', 'max:16'],
-                'img' =>['required']
+                'img' => ['required'],
             ]
         );
         $attributes['photo'] = request()->file('photo')->store('photos');

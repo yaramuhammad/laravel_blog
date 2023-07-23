@@ -40,10 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'authors',
         ],
-        'user'  => [
-            'driver'  => 'session',
+        'user' => [
+            'driver' => 'session',
             'provider' => 'users',
-          ],
+        ],
     ],
 
     /*

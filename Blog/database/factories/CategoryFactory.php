@@ -14,18 +14,21 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    function limit_text($text, $limit) {
+    public function limit_text($text, $limit)
+    {
         if (str_word_count($text, 0) > $limit) {
             $words = str_word_count($text, 2);
-            $pos   = array_keys($words);
-            $text  = substr($text, 0, $pos[$limit]);
+            $pos = array_keys($words);
+            $text = substr($text, 0, $pos[$limit]);
         }
+
         return $text;
     }
+
     public function definition(): array
     {
         return [
-            'name' => $this->limit_text($this->faker->sentence(),2)
+            'name' => $this->limit_text($this->faker->sentence(), 2),
         ];
     }
 }

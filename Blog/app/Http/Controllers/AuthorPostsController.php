@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
-use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -22,7 +21,7 @@ class AuthorPostsController extends Controller
                 'thumbnail' => ['required', 'image'],
                 'category_id' => ['required'],
                 'excerpt' => ['required'],
-                'img' => ['required']
+                'img' => ['required'],
             ]
         );
         $attributes['author_id'] = auth()->id();
@@ -35,13 +34,15 @@ class AuthorPostsController extends Controller
     public function create()
     {
         $cats = Category::all();
-        return view('create', ["categories" => $cats]);
+
+        return view('create', ['categories' => $cats]);
     }
 
     public function edit(Post $post)
     {
         $cats = Category::all();
-        return view('edit', ["categories" => $cats, "post" => $post]);
+
+        return view('edit', ['categories' => $cats, 'post' => $post]);
     }
 
     public function update(Post $post)
@@ -53,7 +54,7 @@ class AuthorPostsController extends Controller
                 'body' => ['required'],
                 'thumbnail' => ['image'],
                 'category_id' => ['required'],
-                'excerpt' => ['required']
+                'excerpt' => ['required'],
             ]
         );
 
@@ -79,6 +80,7 @@ class AuthorPostsController extends Controller
     public function delete(Post $post)
     {
         $post->delete();
+
         return redirect('/edit/posts')->with('success', 'Post Deleted');
     }
 }
